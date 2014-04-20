@@ -5,9 +5,3 @@ module.exports =
 
   activate: (state) ->
     @viewUrlSourceView = new ViewUrlSourceView(state.viewUrlSourceViewState)
-
-  deactivate: ->
-    @viewUrlSourceView.destroy()
-
-  serialize: ->
-    viewUrlSourceViewState: @viewUrlSourceView.serialize()
