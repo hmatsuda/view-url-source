@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable view-url-source': 'view-url-source:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'view-url-source'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'view-url-source:toggle' }
+      ]
+    ]
+  }
+]
