@@ -1,4 +1,5 @@
 {EditorView, View} = require 'atom'
+http = require 'http'
 
 module.exports =
 class ViewUrlSourceView extends View
@@ -28,8 +29,24 @@ class ViewUrlSourceView extends View
       @detach()
     else
       atom.workspaceView.append(this)
+      @urlEditor.focus()
 
   viewUrlSource: ->
     @find(".viewUrlSourceForm").hide()
     @find(".loading").show()
-    url = @urlEditor.getText()
+    link = @urlEditor.getText()
+    
+    req = http.get(link, (res) ->
+      # output response body
+      res.setEncoding "utf8"
+      res.on "data", (str) ->
+        console.log str
+        return
+
+      return
+    )
+
+    # error handler
+    req.on "error", (err) ->
+      console.log "Error: " + err.message
+      return
